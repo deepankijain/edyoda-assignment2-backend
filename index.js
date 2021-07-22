@@ -45,9 +45,9 @@ app.get('/', async (req, res) => {
   res.send('Hey there!!!')
 })
 //Adding players id for adding first player in the url in frontend manually 60f7fb4f2201e505087b7c2f
-app.get('/player/:playerId', async (req, res) => {
+app.get('/firstplayer/', async (req, res) => {
   try {
-    const response = await Player.find({ _id: req.params.playerId })
+    const response = await Player.find().sort({ _id: 1 }).limit(1)
     currentId = response[0]._id
     res.json(response[0])
   } catch (error) {
